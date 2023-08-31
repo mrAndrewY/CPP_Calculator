@@ -10,14 +10,14 @@ Before executing application please:
 3) // execute the command in the shell terminal: // make install - the programm will build and the icon will be on the desktop.
 
 Application:
-   ![CPP_Calc](../images/Calc1.png)
+   ![CPP_Calc](images/Calc1.png)
 
 Plot:
-   ![CPP_Calc](../images/Calc2.png)
+   ![CPP_Calc](images/Calc2.png)
 
 Debet:
-   ![CPP_Calc](../images/Calc3.png)
+   ![CPP_Calc](images/Calc3.png)
 
 Credit:
-   ![CPP_Calc](../images/Calc4.png)
+   ![CPP_Calc](images/Calc4.png)
 
