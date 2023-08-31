@@ -1,0 +1,55 @@
+\documentclass{article}
+\begin{document}
+This is the manual for programm calc version 2.0 
+
+To start the program please open execute file:
+- for MAC OS by command ``open calculator/calculator.app''. 
+
+
+The calc has several modes:
+1) calculator
+2) graph
+3) credits counter
+4) deposit counter (persents interests counter)
+
+Calculator
+The main window contains the upper display for viewing expression and bellow is output display for viewing result of expression, buttons digits buttons in the center, binary operations - the rigt side of the widget, functions - the left side of the widget.  The calc provide to enter rather big expressions (the limit of the expression is 500 symbols including spaces). Calc 0.0 provide to enter values of the expressions only by widget buttons.
+Expressions:
+- expressions with x and braces are supported, button x and braces are under output display, x value is on the botton of the widget default value is 0, if you enter value and after it delete value from x input widget(value for x will remain from previous output).
+
+To get result of the expression press button result "= in right-botton side of the widget.
+Input instruments:
+- Clear button will clear the hole expression
+Errors:
+- calculator has the defence from wrong input, for example - user can't input dot or binary operation twice.
+- if expression has uncorrect placed braces output display will show message Error
+- if expression has operation like 3/0 and output display will show INF (infinity), or 0/0 will show NaN (not a number) - undefined number. These are not are not mistakes but really results of mathematical expressions.  
+
+Graph
+after inserting expression you can view graph. Graph has it's own button from left side of the widget.
+-limits of x value is from -1e6 to 1e6
+-limits of y value is from -1e6 to 1e6
+Step (distanse beetween points on x coord) varies depend on limits of x value.
+You can input your value of the step.
+
+Credit form
+button - credit.
+This form provides to calculate amount of overpayments when you get credit.
+Period divided by months is supported.
+Two tipes of credits are available:
+- Difference
+- Annuitet
+After entering values press Get result and widget show you all payment for every month you would get the credit.
+
+Deposit form
+This form provides to calculate amount of percents after making a deposit.
+Period divided by months is supported.
+Two tipes of deposit are available:
+- with capitalisation
+- without capitalisation
+- lists with replenishments and withdrawals are supported - if you input months and after it push add lists, tables of replenishments and withdrawals will appear where you can input need values of replenishments or withdrawals to the account, number is on the left from every table is a month of the period of the deposit.    
+After entering values press Get result and widget show you common amount of percents, tax you would pay, and common sum of deposit whith percents.
+
+
+calc 2.0 designed and produced by Andrew Yuchkin
+\end{document}
