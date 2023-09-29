@@ -25,8 +25,8 @@ public:
   void DepositCalculation(double deposit, int months, double percent,
                           int periodicity_of_payments, double tax_percent,
                           bool capitalisation, double *income_list,
-                          double *outcome_list, double *sum_percents,
-                          double *tax_sum, double *common_sum);
+                          double *outcome_list, double &sum_percents,
+                          double &tax_sum, double &common_sum);
 
 private:
   Model *model_;

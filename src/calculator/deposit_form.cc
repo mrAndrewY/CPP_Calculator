@@ -5,6 +5,7 @@
 namespace s21 {
 Deposit_form::Deposit_form(Controller *controller)
     : ui(new Ui::Deposit_form), controller_(controller) {
+  this->setWindowTitle("Deposits");
   ui->setupUi(this);
   connect(ui->pushButton_add_lists, SIGNAL(released()), this,
           SLOT(listsPressed()));
@@ -73,7 +74,7 @@ void Deposit_form::resultPressed() {
        i++) {
     income_list[i] = ui->tableWidget_Replenishment->item(i, 0)
                          ->data(Qt::EditRole)
-                         .toDouble(); // itemAt (i,0)->text();
+                         .toDouble(); 
     outcome_list[i] =
         ui->tableWidget_withdraw->item(i, 0)->data(Qt::EditRole).toDouble();
   }
@@ -82,10 +83,10 @@ void Deposit_form::resultPressed() {
   bool capitalisation = ui->checkBox_capitalisation->checkState();
   controller_->DepositCalculation(
       deposit, months, percent, periodicity_of_payments, tax, capitalisation,
-      income_list, outcome_list, &sum_persent, &tax_sum, &common_sum);
-  ui->label_common_payment->setText(QString::number(common_sum, 'f', 0));
+      income_list, outcome_list, sum_persent, tax_sum, common_sum);
+  ui->label_common_payment->setText(QString::number(common_sum, 'f', 2));
   ui->label_common_tax_payment->setText(
-      QString::number(tax_sum)); // QString::number(tax_sum)
+      QString::number(tax_sum)); 
   ui->label_interest->setText(QString::number(sum_persent));
   if (income_list)
     delete[] income_list;
@@ -94,7 +95,3 @@ void Deposit_form::resultPressed() {
 }
 
 } // namespace s21
-//// QString x_string = ui->textEdit_1->toPlainText();
-
-//// ui->tableWidget->setHorizontalHeaderItem( (int)'A', (int) 'B');
-/////['Months', / 'value'],

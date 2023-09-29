@@ -40,8 +40,8 @@ void s21::Model::CreditCalc(double credit_sum, double percent, unsigned months,
 void s21::Model::DepositPersent(double deposit, int months, double percent,
                                 int periodicity_of_payments, double tax_percent,
                                 bool capitalisation, double *income_list,
-                                double *outcome_list, double *sum_percents,
-                                double *tax_sum, double *common_sum) {
+                                double *outcome_list, double &sum_percents,
+                                double &tax_sum, double &common_sum) {
   bool mistake = (percent <= 0 || deposit <= 0 || months <= 0);
   if (!mistake) {
     if (periodicity_of_payments == 0)
@@ -52,20 +52,21 @@ void s21::Model::DepositPersent(double deposit, int months, double percent,
       if (!capitalisation ||
           (periodicity_of_payments > 1 && months_remainder != 0 &&
            i >= months - months_remainder)) {
-        *sum_percents += (deposit * percent / (100 * 12));
+        sum_percents += (deposit * percent / (100 * 12));
       } else {
         if (((i + 1) % periodicity_of_payments == 0 &&
              i >= periodicity_of_payments - 1) ||
             periodicity_of_payments == 1) {
-          *sum_percents += ((deposit + (*sum_percents)) *
+          sum_percents += ((deposit + (sum_percents)) *
                             (percent / (100 * 12)) * periodicity_of_payments);
         }
       }
     }
-    *tax_sum = tax_percent * (*sum_percents / (100 * 12)) * months;
+    common_sum=deposit+sum_percents;
+    tax_sum = tax_percent * (sum_percents / (100 * 12)) * months;
 
   } else {
-    *common_sum = deposit;
-    *sum_percents = 0;
+    common_sum = deposit;
+    sum_percents = 0;
   }
 }

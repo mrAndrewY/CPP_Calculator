@@ -23,14 +23,11 @@ void graphic::plotPressed() { makeGraph(); }
 
 void graphic::checkBox_step_pressed() {
   ui->stepSpinBox->setEnabled(ui->checkBox_step->checkState());
-  std::cout << "it works";
 }
 
 void graphic::makeGraph() {
-  // int x=-100;
 
   ui->label_warning->setText("");
-  //  std::string strstring = ui->Formula->text().toStdString();
 
   std::string o_str = controller_->GetString();
   double x_value_left = -10;
