@@ -429,7 +429,8 @@ double s21::Model::UnaryOperations_(int symbol, doubles **stack) {
 
 int s21::Model::ProcessingRpn_(std::string i_str, double x_value,
                                double &result) {
-  double value1 = 0;
+  setlocale(LC_ALL, "C");
+   double value1 = 0;
   int res = 0;
   doubles *first = nullptr;
   std::size_t pos = 0;
