@@ -245,7 +245,6 @@ TEST(notation, preparcer) {
 }
 
 TEST(notation, error1) {
-
   s21::Model mod;
   s21::Controller controller(&mod);
   std::string test_s = "(sin x-))-5";
@@ -254,7 +253,6 @@ TEST(notation, error1) {
 }
 
 TEST(notation, error2) {
-
   s21::Model mod;
   s21::Controller controller(&mod);
   std::string test_s = "5-";
@@ -263,9 +261,6 @@ TEST(notation, error2) {
 }
 
 TEST(notation, error3) {
-  //    std::string str_in = "(sin x";
-  //    EXPECT_EQ(stack_work(str_in), "Error");
-
   s21::Model mod;
   s21::Controller controller(&mod);
   std::string test_s = "(sin x";
@@ -287,78 +282,6 @@ TEST(str, partclear) {
   EXPECT_EQ(true, controller.GetString().empty());
 }
 
-//   TEST(notation, calculate_rpn1) {
-// //    std::string str_in = "sin x)";
-// //    EXPECT_EQ(stack_work(str_in), "Error");
-
-//  s21::Model mod;
-//   s21::Controller controller(&mod);
-//   std::string test_s="35+489.99*23.7/86.00-5.34";
-//   controller.InsertStringInMod(test_s);
-//   EXPECT_EQ("35 489.99 23.7 * 86.00 / + 5.34 -", controller.GetRpn());
-
-//   }
-
-//  START_TEST(test_errors6) {
-//   char i_str[255] = "x-";
-//   char o_str[500];
-//   o_str[0] = 0;
-//   double result = 0;
-//   stack_work(i_str, o_str);
-//   processing_rpn(o_str, 0, &result);
-//   ck_assert_int_eq(processing_rpn(o_str, 0, &result), 1);
-//   printf("input str  : %s\n", i_str);
-//   printf("output str : %s\n", o_str);
-//   printf("\n_____________________\n");
-//   //  printf ("\n%f\n", result );
-// }
-// END_TEST
-
-// START_TEST(test_errors7) {
-//   char i_str[255] = "-(-(+(-5))";
-//   char o_str[500];
-//   // char o_str_sample[500] = "6 x cos * 5 +";
-//   o_str[0] = 0;
-//   double result = 0;
-//   ck_assert_int_eq(stack_work(i_str, o_str), 1);
-//   processing_rpn(o_str, 0, &result);
-//   ck_assert_int_eq(processing_rpn(o_str, 0, &result), 0);
-//   printf("input str  : %s\n", i_str);
-//   printf("output str : %s\n", o_str);
-//   printf("\n_____________________\n");
-//   printf("\n%f\n", result);
-// }
-// END_TEST
-
-// START_TEST(test_errors8) {
-//   char i_str[255] = "sin(-)";
-//   char o_str[500];
-//   // char o_str_sample[500] = "6 x cos * 5 +";
-//   o_str[0] = 0;
-//   double result = 0;
-//   ck_assert_int_eq(stack_work(i_str, o_str), 0);
-//   // processing_rpn(o_str, 0, &result);
-//   ck_assert_int_eq(processing_rpn(o_str, 0, &result), 1);
-//   printf("input str  : %s\n", i_str);
-//   printf("output str : %s\n", o_str);
-//   printf("\n_____________________\n");
-//   printf("\n%f\n", result);
-// }
-// END_TEST
-
-// START_TEST(test_errors9) {
-//   char i_str[255] = "0)";
-//   char o_str[500];
-//   // char o_str_sample[500] = "6 x cos * 5 +";
-//   o_str[0] = 0;
-//   double result = 0;
-//   ck_assert_int_eq(stack_work(i_str, o_str), 1);
-//   printf("input str  : %s\n", i_str);
-//   printf("output str : %s\n", o_str);
-//   printf("\n_____________________\n");
-//   printf("\n%f\n", result);
-// }
-// END_TEST
 
 TEST(functions, test_mod) {
 
@@ -387,7 +310,7 @@ TEST(test_deposit, deposit) {
   bool capitalisation = true;
   controller.DepositCalculation(
       deposit, months, percent, periodicity_of_payments, tax, capitalisation,
-      income_list, outcome_list, &sum_persent, &tax_sum, &common_sum);
+      income_list, outcome_list, sum_persent, tax_sum, common_sum);
   EXPECT_NEAR(sum_persent, 7229.01, 0.01);
   if (income_list)
     delete[] income_list;
@@ -405,7 +328,7 @@ TEST(test_deposit, deposit) {
   outcome_list = new double[months]();
   controller.DepositCalculation(
       deposit, months, percent, periodicity_of_payments, tax, capitalisation,
-      income_list, outcome_list, &sum_persent, &tax_sum, &common_sum);
+      income_list, outcome_list, sum_persent, tax_sum, common_sum);
   EXPECT_NEAR(sum_persent, 0.07, 0.01);
   if (income_list)
     delete[] income_list;
@@ -424,7 +347,7 @@ TEST(test_deposit, deposit) {
   outcome_list = new double[months]();
   controller.DepositCalculation(
       deposit, months, percent, periodicity_of_payments, tax, capitalisation,
-      income_list, outcome_list, &sum_persent, &tax_sum, &common_sum);
+      income_list, outcome_list, sum_persent, tax_sum, common_sum);
   EXPECT_DOUBLE_EQ(sum_persent, 0);
   if (income_list)
     delete[] income_list;
@@ -443,7 +366,7 @@ TEST(test_deposit, deposit) {
   outcome_list = new double[months]();
   controller.DepositCalculation(
       deposit, months, percent, periodicity_of_payments, tax, capitalisation,
-      income_list, outcome_list, &sum_persent, &tax_sum, &common_sum);
+      income_list, outcome_list, sum_persent, tax_sum, common_sum);
   EXPECT_NEAR(sum_persent, 898.44, 1e-2);
   if (income_list)
     delete[] income_list;
@@ -452,7 +375,6 @@ TEST(test_deposit, deposit) {
   income_list = nullptr;
   outcome_list = nullptr;
 }
-// END_TEST
 
 TEST(test_credit, credit) {
   s21::Model mod;
@@ -474,11 +396,9 @@ TEST(test_credit, credit) {
   delete[] months_array;
   months_array = nullptr;
 }
-// END_TEST
 
 TEST(test_func, fulltest) {
   double x = 0.55;
-  // double result =0;
   s21::Model mod;
   s21::Controller controller(&mod);
 
@@ -518,11 +438,9 @@ TEST(test_func, fulltest) {
   controller.InsertStringInMod(test_s9);
   EXPECT_DOUBLE_EQ(std::log(x), controller.GetRes(x).result_);
 }
-// END_TEST
 
 TEST(test_unary_binary, testt) {
   double x = 0.55;
-  // double result =0;
   s21::Model mod;
   s21::Controller controller(&mod);
 
@@ -559,43 +477,3 @@ TEST(test_unary_binary, testt) {
   EXPECT_DOUBLE_EQ(4, controller.GetRes(x).result_);
   controller.ClearAll();
 }
-// int main() {
-//   int number_failed = 0;
-//   Suite *s = suite_create("s21_calc");
-//   TCase *tc_core = tcase_create("Core");
-//   SRunner *sr = srunner_create(s);
-
-//   tcase_add_test(tc_core, test_1_simple_pnotation);
-//   tcase_add_test(tc_core, test_2_braces_simple_pnotation);
-//   tcase_add_test(tc_core, test_2_braces_simple_pnotation1);
-//   tcase_add_test(tc_core, test_3_braces_pnotation);
-//   tcase_add_test(tc_core, test_4_braces_pnotation_wrong);
-//   tcase_add_test(tc_core, test_5_with_functions);
-//   tcase_add_test(tc_core, test_6_result_with_0);
-//   tcase_add_test(tc_core, test_7_result_with_x);
-//   tcase_add_test(tc_core, test_8_result_with_no_operation);
-//   tcase_add_test(tc_core, test_9_result_with_no_operation);
-//   tcase_add_test(tc_core, test_10_result_with_not_finished_op);
-//   tcase_add_test(tc_core, test_11_result_with_unary_mines);
-//   tcase_add_test(tc_core, test_not_error);
-//   tcase_add_test(tc_core, test_not_error1);
-//   tcase_add_test(tc_core, test_not_error2);
-//   tcase_add_test(tc_core, test_errors1);
-//   tcase_add_test(tc_core, test_errors2);
-//   tcase_add_test(tc_core, test_errors3);
-//   tcase_add_test(tc_core, test_errors4);
-//   tcase_add_test(tc_core, test_errors5);
-//   tcase_add_test(tc_core, test_errors6);
-//   tcase_add_test(tc_core, test_errors7);
-//   tcase_add_test(tc_core, test_errors8);
-//   tcase_add_test(tc_core, test_errors9);
-//   tcase_add_test(tc_core, test_mod);
-//   tcase_add_test(tc_core, test_deposit);
-//   tcase_add_test(tc_core, test_credit);
-//   tcase_add_test(tc_core, test_func);
-//   suite_add_tcase(s, tc_core);
-//   srunner_run_all(sr, CK_NORMAL);
-//   number_failed = srunner_ntests_failed(sr);
-//   srunner_free(sr);
-//   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
-// }

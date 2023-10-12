@@ -1,17 +1,15 @@
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++17
 TESTFLAGS = -lgtest -lgtest_main -lpthread
-#ifeq ($(shell uname -s), Linux)
-#	LDFLAGS +=  -lsubunit
-#endif
 SOURCES = *.cc
 SRC_TEST ="tests/test.cc"  
 OBJECTS = *.o
+OS := $(shell uname)
 
 all: s21_calc_oop.a
 
 dist:	
-	
+
 	tar -cvzf calc_dist.tar.gz *.cc calculator/*.cc
 
 
@@ -20,23 +18,24 @@ dvi:
 
 install:
 	if ! [ -d "calculator/build" ]; then \
-        mkdir calculator/build; \
-    fi 
+	mkdir calculator/build; \
+	fi 
 	cd calculator/build; cmake -B .;  \
 	cmake ../
 	cd calculator/build&&make 
-	ln -s "$(PWD)/calculator/build/s21_calc_c_plus_plus.app" ~/Desktop/calc
-	 
-
-uninstall:
-	rm -rf calculator/build/* ~/Desktop/calc
-
-
-
+	if [ $(OS) = "Darwin" ]; then \
+	ln -s "$(PWD)/calculator/build/s21_calc_c_plus_plus.app" ~/Desktop/calc; \
+	else \
+	./calculator/build/s21_calc_c_plus_plus; \
+	fi
 clean:
 	rm -f *.o *.a *.gcda *.gcno *.gcov *.out *.html *.info *.gch
 	rm -f test
 	rm -rf s21_calc_report test.dSYM
+
+uninstall: clean
+	rm -rf calculator/build/* ~/Desktop/calc
+
 
 s21_calc_oop.a:
 	$(CC) $(CFLAGS) $(LDFLAGS) -c -g  $(SOURCES)
@@ -55,7 +54,7 @@ fsanit: s21_calc_oop.a
 	$(CC)  $(CFLAGS) -g --coverage -fsanitize=address -fsanitize=leak $(SRC_TEST) s21_calc_oop.a $(TESTFLAGS)
 	./a.out
 	rm -f a.out *.gcno *.gcda *.a
- 
+
 format: 
 	clang-format --style=Google -i *.cc *.h calculator/main.cc calculator/deposit_form.h calculator/credit_form.h calculator/view.h  calculator/deposit_form.cc calculator/credit_form.cc calculator/view.cc
 	clang-format --style=Google -n *.cc *.h calculator/main.cc calculator/deposit_form.h calculator/credit_form.h calculator/view.h  calculator/deposit_form.cc calculator/credit_form.cc calculator/view.cc
@@ -74,4 +73,3 @@ gcov_report1: test
 	rm -f *.gcov *.gcda *.gcno test
 	open s21_calc_report/index.html
 
-rebuild: clean all
